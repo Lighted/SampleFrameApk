@@ -47,15 +47,20 @@
             android:name=".activity.ImageCacheDemoActivity"
             android:label="@string/app_name">            
         </activity>
-         <!-- 主页 -->
+         <!-- 下载管理 -->
         <activity
             android:name=".activity.DownloadManageActivity"
             android:label="@string/app_name">            
         </activity>
-         <!-- 主页 -->
+        <!-- 其他 -->
         <activity
             android:name=".activity.OtherActivity"
             android:label="@string/app_name">            
+        </activity>
+        <!-- 滑动刷新ListView -->
+        <activity android:name=".activity.FirstTabActivity"
+            android:label="@string/app_name">
+            
         </activity>
         
         

@@ -82,7 +82,7 @@ public class LoginActivity extends BaseActivity {
 		 */
 		int networkType = Utils.network_Identification(this);
 		if (0==networkType) {
-			ToastUtils.showLong(this, "当前没有网络,请检查网络再试...");
+			ToastUtils.showLong(this, R.string.tip_nonetwork);
 			return;			 
 		}
 		
@@ -201,12 +201,12 @@ public class LoginActivity extends BaseActivity {
 		        dismissProgress();	
 		        switch (resultCode) {
 				case 11:
-					ToastUtils.showLong(LoginActivity.this, getString(R.string.login_fail));
+					ToastUtils.showLong(LoginActivity.this, R.string.login_fail);
 					Utils.writeIntData(LoginActivity.this,Constant.USER_NAME,1);
 					break;
 				case 10:
 					savePassword(username, password);
-					ToastUtils.showLong(LoginActivity.this, getString(R.string.login_success));
+					ToastUtils.showLong(LoginActivity.this, R.string.login_success);
 					Intent intent = new Intent(LoginActivity.this,MainActivity.class);
 					startActivity(intent);
 					LoginActivity.this.finish();
