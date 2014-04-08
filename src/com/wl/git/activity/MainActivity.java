@@ -16,7 +16,6 @@ import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TabHost;
 import android.widget.TextView;
-import android.widget.TabHost.TabSpec;
 
 import com.wl.git.R;
 

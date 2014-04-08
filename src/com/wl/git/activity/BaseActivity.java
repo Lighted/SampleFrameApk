@@ -10,17 +10,14 @@ public class BaseActivity extends Activity {
 
 	private ProgressDialog progressDialog;
 	public static BaseActivity baseActivity = null;
-	public Button mLeftBtn;
-	public Button mRightBtn;
-	public TextView mTitleName;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		baseActivity = this;
-
-	}
+		}
 	
 
 	

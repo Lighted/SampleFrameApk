@@ -7,11 +7,19 @@
  */
 package com.wl.git.activity;
 
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Map;
 
 import org.apache.http.Header;
+import org.apache.http.HttpEntity;
+import org.apache.http.StatusLine;
+import org.apache.http.client.HttpResponseException;
+import org.apache.http.entity.BufferedHttpEntity;
+import org.apache.http.util.EntityUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,6 +27,8 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -28,6 +38,9 @@ import com.wl.git.R;
 import com.wl.git.adapter.SchoolNoticeAdapter;
 import com.wl.git.bean.GlobalVariable;
 import com.wl.git.bean.HttpCache;
+import com.wl.git.bean.HttpCache.HttpCacheListener;
+import com.wl.git.bean.HttpRequest;
+import com.wl.git.bean.HttpResponse;
 import com.wl.git.bean.SchoolNoticeBean;
 import com.wl.git.http.HttpClientPool;
 import com.wl.git.http.JsonHttpResponseHandler;
@@ -43,17 +56,27 @@ import com.wl.git.view.DropDownListView.OnDropDownListener;
  * @version 1.0
  */
 
-public class FirstTabActivity extends BaseActivity {
+public class SecondTabActivity extends BaseActivity {
 	private DropDownListView listView;
 	private SchoolNoticeAdapter adapter = null;
+	private HttpResultHandler handler;
+	
 	
 	private LinkedList<SchoolNoticeBean> linkedList = new LinkedList<SchoolNoticeBean>();
 	private String fid = "46";	
-	private int page = 1;
-	private int count = 10;	
+	private String page = "1";
+	private String count = "10";	
 	private int moreDataCount = 0;
 	public int MORE_DATA_MAX_COUNT = 3;
 	private HttpCache httpCache;
+	private Map<String, String> params = null;
+	private Context context = null;
+	
+    protected static final int SUCCESS_MESSAGE = 0;
+    protected static final int FAILURE_MESSAGE = 1;
+    protected static final int START_MESSAGE = 2;
+    protected static final int FINISH_MESSAGE = 3;
+	
 	
 	
 
@@ -63,14 +86,80 @@ public class FirstTabActivity extends BaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.scroll_refresh_layout);
 		initView();
-		Context context = getApplicationContext();
-        // get the singleton instance of HttpCache
-        httpCache = CacheManager.getHttpCache(context);
-		HttpClientPool.getInstance().doHttpFirstTab
-		(GlobalVariable.userID, fid, String.valueOf(page), 
-				String.valueOf(count), new HttpResultHandler());
+		
 		
 	}
+	private void initData(){
+		params = new HashMap<String, String>();;
+		params.put("module", "bbs");
+		params.put("action", "getbbslist");
+		params.put("userid", GlobalVariable.userID);
+		params.put("fid", fid);
+		params.put("page", page);
+		params.put("count", count);
+		context = getApplicationContext();
+        // get the singleton instance of HttpCache
+        httpCache = CacheManager.getHttpCache(context);
+        HttpRequest httpRequest = new HttpRequest(HttpClientPool.BASE_URL);
+        httpRequest.setParasMap(params);
+        httpCache.httpGet(httpRequest, new HttpCacheListener() {
+
+			@Override
+			protected void onPreGet() {
+				// TODO Auto-generated method stub
+				super.onPreGet();
+				showProgress();
+			}
+
+			@Override
+			protected void onPostGet(HttpResponse httpResponse,
+					boolean isInCache) {
+				// TODO Auto-generated method stub
+				super.onPostGet(httpResponse, isInCache);
+			}
+			
+        });
+	}
+	
+	// Interface to AsyncHttpRequest
+    void sendResponseMessage(HttpResponse response) {
+       
+        String responseBody = null;
+        responseBody = response.getResponseBody();
+        if(response.getResponseCode() >= 300) {
+            sendFailureMessage(responseBody);
+        } else {
+            sendSuccessMessage(responseBody);
+        }
+    }
+    protected void sendFailureMessage(String responseBody) {
+        sendMessage(obtainMessage(FAILURE_MESSAGE, new Object[]{responseBody}));
+    }
+    protected void sendSuccessMessage(String responseBody) {
+        sendMessage(obtainMessage(FAILURE_MESSAGE, new Object[]{responseBody}));
+    }  
+    
+    protected Message obtainMessage(int responseMessage, Object response) {
+        Message msg = null;
+        if(handler != null){
+            msg = this.handler.obtainMessage(responseMessage, response);
+        }else{
+            msg = Message.obtain();
+            msg.what = responseMessage;
+            msg.obj = response;
+        }
+        return msg;
+    }
+    
+    protected void sendMessage(Message msg) {
+        if(handler != null){
+            handler.sendMessage(msg);
+        } else {
+            handler.handleMessage(msg);
+        }
+    }
+    
+    
 	private void initView(){		
 		listView = (DropDownListView)findViewById(R.id.listview);
 		listView.setDropDownStyle(true);
@@ -108,7 +197,14 @@ public class FirstTabActivity extends BaseActivity {
 	}
 	
 	class HttpResultHandler extends JsonHttpResponseHandler {
-		private String responsecode ;
+		private Message message ;
+		private String responsecode;
+		
+		protected void handleMessage(Message msg) {
+			super.handleMessage(msg);
+		}
+		
+		
 
 		@Override
 		public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
@@ -132,7 +228,7 @@ public class FirstTabActivity extends BaseActivity {
 						linkedList.add(schoolBean);						
 					}					
 					if (linkedList.size()>0) {
-						adapter = new SchoolNoticeAdapter(linkedList, FirstTabActivity.this);
+						adapter = new SchoolNoticeAdapter(linkedList, SecondTabActivity.this);
 						listView.setAdapter(adapter);
 						adapter.notifyDataSetChanged();
 						
