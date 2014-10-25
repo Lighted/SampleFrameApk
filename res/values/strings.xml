@@ -28,6 +28,7 @@
     <string name="scrolltorefresh">下拉刷新或滚动到底部加载更多</string>
     <string name="update_at">更新于：</string>
     <string name="tip_nonetwork">&quot;当前没有网络,请检查网络再试...&quot;</string>
+    <string name="loading_fail">加载失败</string>
     
     
 
