@@ -53,7 +53,7 @@ public class LoginActivity extends BaseActivity {
 			if(!TextUtils.isEmpty(user_password)) {
 				passWord_EditText.setText(user_password.toString());
 			}
-			LoginEvent(null);
+			loginEvent(null);
 		}
 		
 		
@@ -73,7 +73,7 @@ public class LoginActivity extends BaseActivity {
 	 * @return void    返回类型 
 	 * @throws
 	 */
-	public void LoginEvent(View view) {
+	public void loginEvent(View view) {
 		int networkType = Utils.network_Identification(this);
 		if (0 == networkType) {
 			Toast.makeText(this, "当前没有网络,请检查网络再试...", Toast.LENGTH_SHORT)
