@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dip"
+            android:layout_weight="1.0"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/notice_content_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dip"
+                android:layout_marginRight="8dip"               
+                android:text="英语学校平台网址变更"
+                android:textColor="@color/black"
+                android:textSize="18sp" />
+
+            <LinearLayout 
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                
+	            <TextView
+	                android:id="@+id/auther_tv"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginLeft="5dip"
+	                android:layout_weight="1"
+	                android:textSize="15sp"
+	                android:text="作者:进步小学" />
+	            
+	            <TextView
+	                android:id="@+id/createtiem_tv"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginLeft="5dip"
+	                android:layout_weight="1"
+	                android:textSize="15sp"
+	                android:text="【2013-12-15】" />
+	            
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dip"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/replies_count_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="回复（92）"
+                    android:textSize="15sp"
+                    android:textColor="#5485a3" />
+
+                <TextView
+                    android:id="@+id/hits_count_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dip"
+                    android:text="人气（6442）"
+                    android:textSize="15sp"
+                    android:textColor="#5485a3" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dip"
+            android:orientation="vertical" 
+            android:visibility="gone">
+
+           <!--  <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ding_img" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:src="@drawable/jing_img" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dip"
+                android:src="@drawable/tu_img" /> -->
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

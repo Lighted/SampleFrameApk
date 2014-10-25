@@ -108,13 +108,15 @@ containing a value of this type.
         public static final int welcome_bg=0x7f020021;
     }
     public static final class id {
+        public static final int auther_tv=0x7f090025;
         public static final int bar_title=0x7f090012;
         public static final int bt_left=0x7f090011;
         public static final int bt_login=0x7f090010;
         public static final int bt_right=0x7f090013;
         public static final int cb_savePwd=0x7f09000f;
-        public static final int divider_1=0x7f090026;
-        public static final int divider_2=0x7f090028;
+        public static final int createtiem_tv=0x7f090026;
+        public static final int divider_1=0x7f09002b;
+        public static final int divider_2=0x7f09002d;
         public static final int download_button=0x7f090000;
         public static final int download_cancel=0x7f090004;
         public static final int download_precent=0x7f090002;
@@ -129,6 +131,7 @@ containing a value of this type.
         public static final int drop_down_list_header_image=0x7f090021;
         public static final int drop_down_list_header_progress_bar=0x7f09001f;
         public static final int drop_down_list_header_second_text=0x7f090023;
+        public static final int hits_count_tv=0x7f090028;
         public static final int image_cache_parent_layout=0x7f090006;
         public static final int imagecache=0x7f090019;
         public static final int img_logo=0x7f090007;
@@ -136,16 +139,18 @@ containing a value of this type.
         public static final int input_pwd=0x7f09000e;
         public static final int layout_account=0x7f090009;
         public static final int layout_pwd=0x7f09000c;
-        public static final int listview=0x7f090024;
+        public static final int listview=0x7f090029;
+        public static final int notice_content_tv=0x7f090024;
         public static final int other=0x7f09001b;
         public static final int radio_group=0x7f090014;
+        public static final int replies_count_tv=0x7f090027;
         public static final int tab_four=0x7f090018;
         public static final int tab_one=0x7f090015;
         public static final int tab_three=0x7f090017;
         public static final int tab_two=0x7f090016;
         public static final int table_layout=0x7f090008;
-        public static final int trinea_info=0x7f090027;
-        public static final int trinea_info_layout=0x7f090025;
+        public static final int trinea_info=0x7f09002c;
+        public static final int trinea_info_layout=0x7f09002a;
         public static final int tv_account=0x7f09000a;
         public static final int tv_pwd=0x7f09000d;
         public static final int welcome_page=0x7f09001c;
@@ -160,8 +165,9 @@ containing a value of this type.
         public static final int divider=0x7f030006;
         public static final int drop_down_list_footer=0x7f030007;
         public static final int drop_down_list_header=0x7f030008;
-        public static final int scroll_refresh_layout=0x7f030009;
-        public static final int trinea_info=0x7f03000a;
+        public static final int school_notice_list_item=0x7f030009;
+        public static final int scroll_refresh_layout=0x7f03000a;
+        public static final int trinea_info=0x7f03000b;
     }
     public static final class string {
         public static final int DownloadManagerPro_java=0x7f07000b;
@@ -182,6 +188,7 @@ containing a value of this type.
         public static final int image_content=0x7f070018;
         public static final int input_account=0x7f070003;
         public static final int input_pwd=0x7f070004;
+        public static final int loading_fail=0x7f07001c;
         public static final int login=0x7f070006;
         public static final int login_fail=0x7f070008;
         public static final int login_success=0x7f070007;
